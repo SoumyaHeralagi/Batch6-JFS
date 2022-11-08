@@ -1,0 +1,631 @@
+----------------------------------Object and Class:
+* object is a entity which has state and behaviour
+* object is created by using new keyword eg: Object obj = new Object()
+* class is a blueprint where objects are created
+* new keyword is used to allocate memory at runtime
+
+---------------------------------Method:
+* Method is block of code that performs specific task
+* it is used to achieve reusability of code
+* method declaration has access specifier, return type, method name, parameters
+
+static method:
+* static method contains static keyword and it belongs to a static class rather than instance of class
+* no objection creation is needed in static class
+
+instance method:
+* instance method is method of class 
+* object must be created before calling the method
+* instance method has two types:
+    * accessor method - get method or getter used to get values from private methods
+    * mutuator method - set method or setter used to set values of private method
+
+abstract method:
+* abstract method is method without method body/implementation
+* abstract method is declared in abstract class only using abstract keyword to the class
+
+--------------------------------Constructor:
+* Constructor is special type of method which used to initialize object
+* Everytime when object is created using new keyword a default constructor is called
+* constructor has two types:
+    * parameterized constructor
+    * default Constructor 
+* constructor must have same name as class name while creating
+* constructor cannot be static, abstract, final and synchronized
+* constructor can be overloaded by having same name with different paramenters.
+* the purpose of default constructor is, its is called when no constructor is created in the class and assign default values to the objects
+* the purpose of parameterized constructor is to give specific values to the objects created by the constructor.
+
+----------------------------super keyword:
+* super keyword is a reference variable which is used to call parent object.
+* super is used to refer parent class object
+* super() is used to invoke parent class constructor
+* we can super keyword to access data members or field of parent class
+* it is used if parent class and child class have same values
+
+class Person{
+    int id;
+    String name;
+    Person(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+    void enjoy(){
+        System.out.println("enjoying");
+    }
+}
+
+class Employee extends Person{
+    float salary;
+    Employee(int id, String name, float salary){
+        super(id,name);
+        this.salary = salary;
+    }
+    void display(){
+        System.out.println(id+" "+name+" "+salary);
+        super.enjoy();
+    }
+}
+
+class Superkeywo {
+
+    public static void main(String[] args) {
+        Employee emp = new Employee(22145, "ankita", 98758.9f);
+        emp.display();
+    }
+}
+
+--------------------------------Final Keyword/method/class:
+* final keyword is like a constant once the value is assigned it cannot be changed, if changed then there will be compile error
+* if final method is used the it cannot be overriden
+* if final class is used then it cannot be extended
+
+eg: final keyword
+class Finalkey{
+    final int speedlimit=90;
+    void run(){
+        // error compile time error
+        // speedlimit=100;
+        System.out.println("run() will not execute because of compile error");
+    }
+    public static void main(String[] args) {
+        Finalkey key = new Finalkey();
+        key.run();
+    }
+}
+
+
+eg: final method
+class Bike{  
+  final void run(){System.out.println("running");}  
+}  
+     
+class Honda extends Bike{  
+   void run(){System.out.println("running safely with 100kmph");}  
+     
+   public static void main(String args[]){  
+   Honda honda= new Honda();  
+   honda.run();  
+   }  
+}
+
+eg: final class
+final class Bike{}  
+  
+class Honda1 extends Bike{  
+  void run(){System.out.println("running safely with 100kmph");}  
+    
+  public static void main(String args[]){  
+  Honda1 honda= new Honda1();  
+  honda.run();  
+  }  
+}  
+
+--------------------------------this keyword:
+* this keyword is a reference variable that refers to the current object
+
+
+----------------------------------Static keyword/method:
+static keyword:
+* if the variable is declared with static keyword then its is static variable.
+* the static variable gets the memory only once in the class area at the time of class loading
+* the static variable is used to refer the common property of all objects in class/method. eg: college name of students present in same college.
+* advantage of static variable is it makes program memory efficient
+
+static method:
+* if the method is declared with static keyword then it is static method
+* creation of object in static method is not required 
+* static method can create and access static data members
+* static method cannot invoke or call non-static members 
+* in static method this and super keyword is not used
+
+why main() is static?
+=> main method is static so there will be no creation of object and if the main() is static then it has to create object everytime it executed and lead to problem extra memory allocation.
+
+static block:
+* it is used to initialize the static data members
+* it will run before main()
+* this is done in java 1.6, after java1.6 this is not work.
+
+---------------------------------Inheritence:
+* Inheritence in java is a mechanism in which a object acquire all property and behaviour of a parent class
+* Inheritence is used to achieve method overriding( runtime polymorphism) and code reusibility.
+* there are three types of inheritence:
+    * single inheritence
+    * multilevel inheritence
+    * hierarchial inheritence
+
+eg: single inheritence
+class A{
+    void display1(){
+        System.out.println("from Class A");
+    }
+}
+
+class B extends A{
+    void display(){
+        System.out.println("from Class B");
+    }
+}
+
+class Inheritence_single{
+    public static void main(String[] args) {
+        B obj = new B();
+        obj.display();
+        obj.display1();
+    }
+}
+
+eg: multilevel inheritence
+
+class A{
+    void run(){
+        System.out.println("run class A");
+    }
+}
+
+class B extends A{
+    void walk(){
+        System.out.println("walk class B");
+    }
+}
+
+class C extends B{
+    void sprint(){
+        System.out.println("sprint class C");
+    }
+}
+public class Inherit_multilevel {
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.sprint();
+        obj.walk();
+        obj.run();
+    }
+}
+
+eg: hierarchial inheritence
+
+class A{
+    void run(){
+        System.out.println("run");
+    }
+}
+
+class B extends A{
+    void jump(){
+        System.out.println("Jump");
+    }
+}
+
+class C extends A{
+    void kick(){
+        System.out.println("kick");
+    }
+}
+
+class Inherit_Hierarchial {
+    public static void main(String[] args) {
+        C obj = new C();
+        obj.kick();
+        obj.run();
+    }
+}
+
+* multiple inheritence and hybrid inheritence are not supported in inheritence, to achieve these two we can use interface 
+* multiple inheritence is not supportedin inheritence because to reduce complexity and simple the language
+
+--------------------------------- Aggregation:
+* if a class have an entity reference then it is a Aggregation
+* aggregation is HAS-A relationship
+* eg: an employee conatins id, name and another object address which has information of city,state,landmark,pincode. likethis employee HAS A address.
+* aggregation is used when there is HAS A relationship 
+* inheritence is used only when object maintained IS-A relation throughout the lifetime, otherwise , using aggregation is best.
+*
+Address.java
+public class Address {  
+String city,state,country;  
+  
+public Address(String city, String state, String country) {  
+    this.city = city;  
+    this.state = state;  
+    this.country = country;  
+}  
+  
+}  
+
+Emp.java 
+public class Emp {  
+int id;  
+String name;  
+Address address;  
+  
+public Emp(int id, String name,Address address) {  
+    this.id = id;  
+    this.name = name;  
+    this.address=address;  
+}  
+  
+void display(){  
+System.out.println(id+" "+name);  
+System.out.println(address.city+" "+address.state+" "+address.country);  
+}  
+  
+public static void main(String[] args) {  
+Address address1=new Address("gzb","UP","india");  
+Address address2=new Address("gno","UP","india");  
+  
+Emp e=new Emp(111,"varun",address1);  
+Emp e2=new Emp(112,"arun",address2);  
+      
+e.display();  
+e2.display();  
+      
+}  
+}  
+
+---------------------------------polymorphism:
+* polymorphism is an ability of an object to take many different forms
+* 2 types of polymorphism: 
+    * compile-time polymorphism: also known as static polymorphism, this type of polymorphism is achieved by method overloading
+    * run-time polymorphism: also known as dynamic method polymorphism, this type of polymorphism is achieved by method overridding
+
+--------------------------------method overriding:
+* if class(sub class/child class) has same method declaration in the parent class then is said to be method overriding.
+* method overriding is used for run polymorphism
+* while using method overriding there must be:
+    * the method name must be same as in parent class
+    * method must have same parameter as the parent class
+    * there must be IS-A relationship
+eg: a scenario of bank fetching rate of interest of different banks with same method name , bank extends SBIbank, bank extends ICICIbank etc..
+
+* methods we cannot override : main() , static methods{ static methods cannot be overriden because the static objects belong to class area instance object belong to heap area }
+* instace object are non-static object which are created when objects are created using 'new' keyword adn detroyed when obj is destroyed.
+
+-------------------------------Run-time polymorphism:
+* run-time polymorphism is the process in which the call of overriden method is resolved in runtime rather than compile-time
+* it is done JVM
+* eg:
+class Bank{
+    int rateOfInterest(){
+        return 0;
+    }
+}
+
+class SBIbank extends Bank{
+    int rateOfInterest(){
+        return 5;
+    }
+}
+
+class ICICIbank extends Bank{
+    int rateOfInterest(){
+        return 7;
+    }
+}
+
+class YESbank extends Bank{
+    int rateOfInterest(){
+        return 6;
+    }
+}
+
+class Main1{
+    public static void main(String[] args) {
+        Bank b;
+        b = new SBIbank();
+        System.out.println("SBI Bnk rate of interest: " +b.rateOfInterest());
+        b = new ICICIbank();
+        System.out.println("ICICI Bank rate of interest: "+b.rateOfInterest());
+        b = new YESbank();
+        System.out.println("YES Bank rate of interest: "+b.rateOfInterest());
+    }
+}
+
+
+------------------------------method overloading:
+* if a class has same name but different parameters then that method is called method overloading.
+* method overloading increases readability of the program.
+* there are two ways to overload the method:
+    * by changing number of arguments
+    * by changing data type in argument
+* we can overload main() method 
+* eg:
+    * public void main(String[] args){}
+    * public void main(String args[]){}
+    * public void main(){}
+
+public class Compitimepoly {
+    public int calculate(int a, int b){
+        return a+b;
+    }
+    public int calculate(int a, int b, int c){
+        return a+b+c;
+    }
+    public static void main(String[] args) {
+        Compitimepoly calc = new Compitimepoly();
+        System.out.println("sum of a and b : "+ calc.calculate(4,5));
+        System.out.println("sum of a, b and c : "+ calc.calculate(5,8,9));
+    }
+}
+
+-------------------------------Abstraction:
+* abstraction is process of hiding implementation details and showing only functionality to user 
+* abstraction lets you focus on what object does insted of how it is done
+* abstration is achieved by abstract class and interface
+* abstract class is class declared with abstract keyword
+* eg: abstraction with abstract class/ method and constructor
+abstract class Bike{
+	Bike(){
+		System.out.println("Bike is created");
+	}
+	abstract void run();
+	void changeGear(){
+		System.out.println("Change Gear");
+	}
+}
+
+class Honda extends Bike{
+	void run() {
+		System.out.println("running safely");
+	}
+}
+
+public class Abstract1 {
+	public static void main(String[] args) {
+		Bike b = new Honda();
+		b.run();
+	}
+}
+
+-------------------------------------------Interface:
+Interface:
+* interface is mechanism to achieve abstraction and multiple inheritence
+* java interface represents IS-A relationship and it can have abstract methods and variables
+* in java 8 we can have default and static methods in interface
+* while compiling, the compiler adds public static final to variable and public abstract to methods in interface by default.
+* class extends class, interface extends interface, but class implements interface 
+* a class can inherit multiple interfaces and interfaces can inherit multiple interfaces this inheritence is called multiple inheritence 
+* while implementing interface method, the method should be always public 
+eg:
+interface Printable{
+	void print();
+}
+interface Showable{
+	void show();
+}
+class A implements Printable,Showable{
+	public void print() {
+		System.out.println("printing");
+	}
+	public void show() {
+		System.out.println("showing");
+	}
+}
+public class Interface_ex1 {
+	public static void main(String[] args) {
+		A a = new A();
+		a.print();
+		a.show();
+	}
+}
+
+-------------------------------------------Package:
+Package:
+* packages in java a group of similar type of classes, interface and sub-packages
+* java packages is used to catagorize classes and interface so that they can be maintained easily
+* java packages provides access protection
+* access package from another package:
+    * import package.*;
+    * import package.classname;
+    * fully qualified name
+
+Access modifiers:
+                                        Private   public   protected   default
+within the class                          YES      YES        YES         YES
+within package                             NO      YES        YES         YES 
+outside package by subclass only           NO      YES        YES          NO
+outside package                            NO      YES         NO          NO 
+
+-------------------------------------------Encapsulation:
+Encapsulation:
+* Encapsulation is process of wrapping code and data binding together into single unit.
+* class is encapsulated by making all data members into private and declaring setter and getter method in the class
+* java bean class is encapsulated class
+eg: 
+package encapex1;
+
+public class Encapsulation_ex1 {
+	
+ private String name, emailId;
+ private int amount;
+ private int accno;
+ 
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getEmailId() {
+	return emailId;
+}
+public void setEmailId(String emailId) {
+	this.emailId = emailId;
+}
+public int getAmount() {
+	return amount;
+}
+public void setAmount(int amount) {
+	this.amount = amount;
+}
+public int getAccno() {
+	return accno;
+}
+public void setAccno(int accno) {
+	this.accno = accno;
+}
+ 
+}
+
+import encapex1.*;
+public class Encap_acc {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Encapsulation_ex1 obj = new Encapsulation_ex1();
+		obj.setName("lisa");
+		obj.setEmailId("lisalala@gmal.com");
+		obj.setAmount(233333);
+		obj.setAccno(409080);
+		
+		System.out.println(obj.getName()+" "+obj.getEmailId()+" "+obj.getAmount()+" "+obj.getAccno());
+		
+	}
+
+}
+
+------------------------------------------------------Multithreading:
+What is multithreading?
+* Multithreading is a process of executing two or more threads simultaneously 
+* it is used to achieve multitasking
+* threads use shared memory area
+
+Creating a thread in two ways:
+* By extending Thread class
+* By implementing Runnable interface
+
+* run() is overrided when Thread is created, logical code is written inside run()
+* start() starts the thread, its compulsory to execute start() to start the thread otherwise the thread will not start
+
+Lifecycle of thread:
+* new - Instance of thread is created which is not started.
+* runnable - after invocation of start() and before the selection of scheduler
+* running - after the thread scheduler has selected it
+* non-runnable - thread is alive, but not eligible to run
+* terminated - run() method is completed executing
+
+Constructors of Thread:
+commonly used Thread constructors-
+* Thread()
+* Thread(string)
+* Thread(Runnable r)
+* Thread(Runnable r, String s) 
+
+Thread Priorities:
+3 constant Thread priorites-
+* MIN_PRIORITES = 1
+* NORM_PRIRITIES = 5
+* MAX_PRORITIES = 10
+Methods - .join(), .sleep(), .setPriority(), .getPriority(), run(), start()
+
+
+
+--------------------------------------------------------Exception Handling:
+* There are three types of errors - 
+- Syntax error
+- Logical error
+- Runtime error
+
+* Syntax error - when compiler finds something wrong with syntax in the program it gives a syntax error.
+
+* Logical error - when a program compiles and runs successfully but if the output is not correct then it is logical error.
+
+* Runtime error - when a error occurs during the runtime of the program then it is runtime error.
+* these occur due to bad input or resource constraints, mostly done by the users
+
+* What is exception handling?
+-> Exception Handling is a machanism to handle runtime errors.
+
+* what is Exceptions?
+-> An Exceptions is an evnet that occurs when a program is executed disrupting the normal flow of instructions.
+* there are mainly 3 types of exceptions:
+- checked exception: compile time exceptions( handled by compiler)
+- unchecked exception: Runtime exceptions
+- Error (unchecked exception)
+
+* Hierarchy of Java Exception Classes:
+Throwable (java.lang.Throwable class is root class of java exception):
+- Exception:
+	->IOException
+	->SQLException
+	->ClassNotFoundException
+	->RuntimeException:
+		->>AithmeticException
+		->>NullPointerException
+		->>NumberFormatException
+		->>IndexOutOfBoundsException:
+			->>>ArrayIndexOutOfBoundsException
+			->>>StringIndexOutOfBoundsException
+- Error:
+	->StackOverflowError
+	->VirtualMachineError
+	->OutOfMemoryError
+
+* Exception class in java
+The exception class has the following important methods:
+1) Strings toString executed when sout(e) is ran
+2) void printStackTrace() - prints Stack trace
+3) Strinf getMessage() - prints the exception message
+
+- Exception class is extended using extend keyword
+public class MyException extends Exception{
+	@Override
+	public String toString(){
+		return "I am toString()";
+	}
+	@Override
+	public String getMessage(){
+		return "I am getMessage()";
+	}
+
+}
+
+class Mymain{
+	public static void main(String[] args){
+		int a=10;
+		if(a<11){
+			try{
+				throw new ArithematicException("exception");
+			}
+			catch(Exception e){
+				System.out.println(e.getMessage());
+				System.out.println(e.toString());
+				e.printStackTrace();
+			}
+
+		}
+	}
+}
+
+* Throw Keyword:
+- throw keyword is used to throw an exception explicitly by the programmer
+
+* throws keyword:
+- Throws keyword is used to declare an exception for method
+public void calculate(int a, int b) throws IOException{
+	//code
+}
+
+* Java finally block:
+- Finally block contains the code which is always executed whether the exception is handled or not 
